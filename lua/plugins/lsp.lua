@@ -17,10 +17,28 @@ return {
           cmd = { 'clangd', '--background-index', '--clang-tidy' },
         },
         pylsp = {},
+        jdtls = {
+          cmd = { 'jdtls' },
+          root_dir = require('lspconfig.util').root_pattern('pom.xml', 'gradle.build', '.git'),
+          settings = {
+            java = {
+              eclipse = {
+                downloadSources = true,
+              },
+              configuration = {
+                updateBuildConfiguration = 'interactive',
+              },
+              maven = {
+                downloadSources = true,
+              },
+            },
+          },
+        },
       }
 
       -- Tools to ensure are installed
       local ensure_installed = vim.tbl_keys(servers or {})
+
       for i, name in ipairs(ensure_installed) do
         if name == 'pylsp' then
           ensure_installed[i] = 'python-lsp-server'
@@ -31,6 +49,7 @@ return {
       vim.list_extend(ensure_installed, {
         'lua-language-server',
         'stylua',
+        'jdtls',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
