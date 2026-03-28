@@ -1,3 +1,4 @@
+-- [[ Completion (blink.cmp + LuaSnip) ]]
 return {
   {
     'saghen/blink.cmp',
@@ -22,14 +23,42 @@ return {
         nerd_font_variant = 'mono',
       },
       completion = {
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        menu = {
+          border = 'rounded',
+          winblend = 0,
+          winhighlight = 'Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None',
+          draw = {
+            padding = 1,
+            gap = 1,
+          },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 500,
+          window = {
+            border = 'rounded',
+            winblend = 0,
+            winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder',
+            max_width = 60,
+            max_height = 20,
+          },
+        },
       },
       sources = {
         default = { 'lsp', 'path', 'snippets' },
       },
       snippets = { preset = 'luasnip' },
       fuzzy = { implementation = 'lua' },
-      signature = { enabled = true },
+      signature = {
+        enabled = true,
+        window = {
+          border = 'rounded',
+          winblend = 0,
+          winhighlight = 'Normal:BlinkCmpSignatureHelp,FloatBorder:BlinkCmpSignatureHelpBorder',
+          max_width = 80,
+          max_height = 10,
+        },
+      },
     },
   },
 }

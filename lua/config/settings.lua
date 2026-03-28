@@ -74,3 +74,11 @@ vim.diagnostic.config {
   virtual_lines = false,
   jump = { float = true },
 }
+-- LSP info on K styling
+vim.lsp.config('*', {
+  floating_window_config = {
+    border = 'rounded',
+    max_width = 80,
+    max_height = 30,
+  },
+})

@@ -18,3 +18,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Neotree toggle
 vim.keymap.set('n', '<leader>n', ':Neotree toggle filesystem left<CR>')
+-- LSP hover with styled borders
+vim.keymap.set('n', 'K', function()
+  vim.lsp.buf.hover {
+    border = 'rounded',
+    max_width = 80,
+    max_height = 30,
+  }
+end, { noremap = true })
